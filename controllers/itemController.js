@@ -100,6 +100,27 @@ const getItemCategoryByName = async (req, res) => {
   }
 }
 
+const updateItemQuantityByname = async (req, res) => {
+  const nameToUpdate = req.params.name;
+  const newQuantity = req.body.quantity;
+
+  try {
+    const updatedItem = await Item.findOneAndUpdate(
+      { name: nameToUpdate },
+      { quantity: newQuantity },
+      { new: true }
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    res.json(updatedItem);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 
 module.exports = {
   createItem,
@@ -109,5 +130,6 @@ module.exports = {
   deleteItemById,
   getItemAndDescriptionByName,
   getItemQuantityByName,
-  getItemCategoryByName
+  getItemCategoryByName,
+  updateItemQuantityByname
 };

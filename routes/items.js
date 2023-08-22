@@ -26,4 +26,7 @@ router.get('/items/quantity/:name', itemController.getItemQuantityByName);
 //get item category by name
 router.get('/item/category/:name', itemController.getItemCategoryByName);
 
+// Update item quantity by name
+router.put('/items/update-quantity/:name', itemController.updateItemQuantityByname);
+
 module.exports = router;
