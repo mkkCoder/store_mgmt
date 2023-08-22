@@ -1,16 +1,23 @@
 const Item = require('../models/item');
+const mongoose = require('mongoose');
 
 // Controller for creating a new item
 const createItem = async (req, res) => {
   try {
-    const newItem = new Item(req.body);
+    const newItem = new Item({
+      _id: new mongoose.Types.ObjectId(), // Generate a new ObjectId
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      quantity: req.body.quantity,
+    });
+
     const savedItem = await newItem.save();
     res.status(201).json(savedItem);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
-
 // Controller for getting all items
 const getAllItems = async (req, res) => {
   try {
@@ -121,6 +128,21 @@ const updateItemQuantityByname = async (req, res) => {
   }
 };
 
+const getAllItemsAndQuantities = async (req, res) => {
+  try {
+    const items = await Item.find({}, 'name quantity');
+    
+    const itemsAndQuantities = {};
+    items.forEach(item => {
+      itemsAndQuantities[item.name] = item.quantity;
+    });
+
+    res.json(itemsAndQuantities);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 module.exports = {
   createItem,
@@ -131,5 +153,6 @@ module.exports = {
   getItemAndDescriptionByName,
   getItemQuantityByName,
   getItemCategoryByName,
-  updateItemQuantityByname
+  updateItemQuantityByname,
+  getAllItemsAndQuantities
 };
