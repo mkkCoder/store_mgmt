@@ -143,6 +143,15 @@ const getAllItemsAndQuantities = async (req, res) => {
   }
 };
 
+const getNumOfItems = async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.json(items.length);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 
 module.exports = {
   createItem,
@@ -154,5 +163,6 @@ module.exports = {
   getItemQuantityByName,
   getItemCategoryByName,
   updateItemQuantityByname,
-  getAllItemsAndQuantities
+  getAllItemsAndQuantities,
+  getNumOfItems
 };

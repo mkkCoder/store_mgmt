@@ -32,4 +32,7 @@ router.put('/items/update-quantity/:name', itemController.updateItemQuantityByna
 // Get all item namess and quantities
 router.get('/items/all-names-quantities', itemController.getAllItemsAndQuantities);
 
+//get number of items
+router.get('/items/num-items', itemController.getNumOfItems);
+
 module.exports = router;
