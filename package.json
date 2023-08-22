@@ -1,0 +1,24 @@
+{
+  "name": "drug_store",
+  "version": "1.0.0",
+  "description": "An app that manages the inventory of a(n) (actual) drug store, not that nonsence that they sell in superfarm:)",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkkCoder/store_mgmt.git"
+  },
+  "author": "Maoz Kellerman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkkCoder/store_mgmt/issues"
+  },
+  "homepage": "https://github.com/mkkCoder/store_mgmt#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3"
+  }
+}
