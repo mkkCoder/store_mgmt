@@ -11,19 +11,26 @@ app.use(express.json());
 
 app.use('/api', itemRoutes);
 
+// a function that uses mongoose to connect to MongoDB
+async function connectToMongoDB() {
+  try {
+    await mongoose.connect(db.mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error.message);
+  }
+}
+
 // Initialize function to be run when the app starts
 async function initializeApp() {
   try {
     // Your database initialization code goes here
     // For example, you can connect to the database or seed initial data
-
-    await mongoose.connect(db.mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    // console.log('Connected to MongoDB');
-
+    // console.log(db.mongoURI)
+    await connectToMongoDB();
     await Item.deleteMany({});
     // Create and save three items to the database
     const itemsToAdd = [
@@ -62,10 +69,9 @@ async function initializeApp() {
     console.error('Error initializing app:', error);
   }
 }
-
+// console.log("second_log")
 // Call the initialization function
 initializeApp().then(() => {
-  // Start the server
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(`Server started on port ${port}`);
