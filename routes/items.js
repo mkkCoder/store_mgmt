@@ -29,7 +29,7 @@ router.get('/item/category/:name', itemController.getItemCategoryByName);
 // Update item quantity by name
 router.put('/items/update-quantity/:name', itemController.updateItemQuantityByname);
 
-// Get all item namess and quantities
+// Get all item names and quantities
 router.get('/items/all-names-quantities', itemController.getAllItemsAndQuantities);
 
 //get number of items

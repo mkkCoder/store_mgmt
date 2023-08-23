@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/drug_store_mongoDB';
+const mongoURI = 'mongodb://mongo:27017';
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 const db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
-  console.log('Connected to MongoDB');
+  console.log('MongoDB connection opened');
+});
+
+db.on('error', (error) => {
+  console.error('MongoDB connection error:', error);
 });
 
 exports.mongoURI = mongoURI;
+
+
