@@ -35,7 +35,7 @@ Before you begin, ensure you have the following installed:
 1. Clone this repository to your local machine:
 
    ```bash
-   git@github.com:mkkCoder/store_mgmt.git
+   https://github.com/mkkCoder/store_mgmt.git
    ```
 
 2. Navigate to the project directory:
